@@ -55,6 +55,7 @@ namespace BloodBankManagementSystem.DAL
             return dt;
         }
         #endregion
+
         #region INSERT data to database
         public bool Insert(donorBLL d)
         {
@@ -91,7 +92,7 @@ namespace BloodBankManagementSystem.DAL
                 int rows = cmd.ExecuteNonQuery();
 
                 //If the Query is Executed Successfully the value of rows willb e greater than Zero else it will be Zero
-                if(rows>0)
+                if(rows > 0)
                 {
                     //Query Executed Successfully
                     isSuccess = true;
@@ -116,6 +117,7 @@ namespace BloodBankManagementSystem.DAL
             return isSuccess;
         }
         #endregion
+
         #region UPDATE donors in DAtabase
         public bool Update(donorBLL d)
         {
@@ -151,7 +153,7 @@ namespace BloodBankManagementSystem.DAL
                 int rows = cmd.ExecuteNonQuery();
 
                 //If the Query is Executed Successfully then its value will be greater than 0 else it will be 0
-                if(rows>0)
+                if(rows > 0)
                 {
                     //Query Executed Successfully
                     isSuccess = true;

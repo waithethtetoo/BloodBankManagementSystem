@@ -147,15 +147,23 @@ namespace BloodBankManagementSystem.UI
 
             imageName = dgvDonors.Rows[RowIndex].Cells[9].Value.ToString();
 
-            //Update the VAlue of rowHeaderImage
+            //Update the Value of rowHeaderImage
             rowHeaderImage = imageName;
 
             //Display The image of Selected Donor
             //Get the image path
             string paths = Application.StartupPath.Substring(0, (Application.StartupPath.Length) - 10);
             string imagePath = paths + "\\images\\" + imageName;
-            //Display the Image of SElected User
-            pictureBoxProfilePicture.Image = new Bitmap(imagePath);
+            //Display the Image of Selected User
+            if (File.Exists(imagePath))
+            {
+                pictureBoxProfilePicture.Image = new Bitmap(imagePath);
+            }
+            else
+            {
+                imagePath = paths + "\\images\\no-image.jpg";
+                pictureBoxProfilePicture.Image = new Bitmap(imagePath);
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -202,7 +210,7 @@ namespace BloodBankManagementSystem.UI
                 //Call Clear Function
                 Clear();
 
-                //Call GArbage Collection
+                //Call Garbage Collection
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
 
@@ -292,7 +300,7 @@ namespace BloodBankManagementSystem.UI
             open.Filter = "Image Files Only (*.jpg; *.jpeg; *.png; *.gif| *.jpg; *.jpeg; *.png; *.gif)";
 
             //3. Check whether the image is selected or not
-            if(open.ShowDialog()==DialogResult.OK)
+            if(open.ShowDialog() == DialogResult.OK)
             {
                 //Check if the file exists or not
                 if(open.CheckFileExists)
@@ -301,7 +309,7 @@ namespace BloodBankManagementSystem.UI
                     pictureBoxProfilePicture.Image = new Bitmap(open.FileName);
 
                     //Rename the selected image 
-                    //1. Get the Extension of SElected Image
+                    //1. Get the Extension of Sslected Image
                     string ext = Path.GetExtension(open.FileName);
 
                     string name = Path.GetFileNameWithoutExtension(open.FileName);
@@ -310,7 +318,7 @@ namespace BloodBankManagementSystem.UI
                     Guid g = new Guid();
                     g = Guid.NewGuid();
 
-                    //Finally REname our Image
+                    //Finally Rename our Image
                     imageName = "Blood_Bank_MS_"+ name + g + ext;
 
                     //Get the Source Path (Path of Image)

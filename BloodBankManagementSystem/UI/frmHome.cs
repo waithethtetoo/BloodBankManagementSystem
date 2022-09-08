@@ -81,7 +81,7 @@ namespace BloodBankManagementSystem
             string keywords = txtSearch.Text;
 
             //Check whether the TextBox is Empty or Not
-            if(keywords != null)
+            if(!string.IsNullOrEmpty(keywords) || !string.IsNullOrWhiteSpace(keywords))
             {
                 //Filter the Donors based on Keywords
                 DataTable dt = dal.Search(keywords);
@@ -89,7 +89,7 @@ namespace BloodBankManagementSystem
             }
             else
             {
-                //DIsplay all the Donors
+                //Display all the Donors
                 DataTable dt = dal.Select();
                 dgvDonors.DataSource = dt;
             }
